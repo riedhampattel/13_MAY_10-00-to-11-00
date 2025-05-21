@@ -10,8 +10,7 @@ int main()
 	}
 	else
 	{
-		printf("\n%d is an odd number",num)
-		;
+		printf("\n%d is an odd number",num);
 	}
 	return 0;
 }
