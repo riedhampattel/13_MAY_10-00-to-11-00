@@ -32,8 +32,10 @@ int main()
             display();
         break;
         case 4:
+            update();
         break;
         case 5:
+            delete();
         break;
     }
     char temp;
@@ -180,4 +182,76 @@ void display()
             }
         break;
     }
+}
+
+void update()
+{
+    int id,choice,i;
+    char str[25];
+    float per;
+    printf("\nEnter the id = ");
+    scanf("%d",&id);
+    printf("\n1.Name");
+    printf("\n2.Percentage");
+    printf("\nEnter the choice = ");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:
+            printf("\nEnter the updated name = ");
+            scanf("%s",&str);
+            for(i=0;i<st;i++)
+            {
+                if(id==s[i].roll)
+                {
+                    strcpy(s[i].name,str);
+                }
+            }
+        break;
+        case 2:
+            printf("\nEnter the updated percentage = ");
+            scanf("%f",&per);
+            for(i=0;i<st;i++)
+            {
+                if(id==s[i].roll)
+                {
+                    s[i].percentage = per;
+                    if(per>80)
+                    {
+                        s[i].grade = 'A';
+                    }
+                    else if (per>35 && per<=80)
+                    {
+                        s[i].grade = 'B';
+                    }
+                    else
+                    {
+                        s[i].grade = 'C';
+                    }
+                }
+            }
+        break;
+    }
+}
+
+void delete()
+{
+    int id,i,index;
+    printf("\nEnter the id = ");
+    scanf("%d",&id);
+    for(i=0;i<st;i++)
+    {
+        if(id==s[i].roll)
+        {
+            index = i;
+        }
+    }
+    for(i=index;i<st-1;i++)
+    {
+        s[i].roll = s[i+1].roll;
+        strcpy(s[i].name,s[i+1].name);
+        s[i].percentage = s[i+1].percentage;
+        s[i].grade = s[i+1].grade;
+    }
+    st--;
 }
